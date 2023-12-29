@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import WorkoutForm from './components/WorkoutForm';
+import WorkoutDisplay from './components/WorkoutDisplay';
 
 function App() {
+  const [workoutData, setWorkoutData] = useState({});
+
+  const handleWorkoutSubmit = (data) => {
+    setWorkoutData(data);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="min-h-screen bg-black text-white flex flex-col">
+      <header className="py-12 text-center">
+        <h1 className="text-6xl font-bold">JKWB</h1>
       </header>
+      <main className="flex-grow">
+        <div className="container mx-auto p-4">
+          <WorkoutForm onSubmit={handleWorkoutSubmit} />
+          <WorkoutDisplay workoutData={workoutData} />
+        </div>
+      </main>
     </div>
   );
 }
